@@ -7,11 +7,30 @@ Class {
 { #category : #baselines }
 BaselineOfPolyglotricBaselineTest2 >> baseline: spec [
 	<baseline>
-	
 	spec
 		for: #common
-		do: [ self setUpDependencies: spec.
-			spec package: 'PolyglotricBaselineTest2' with: [ spec requires: #('Teapot') ] ]
+		do: [ spec
+				baseline: 'Teapot'
+					with: [ spec
+									repository: 'github://zeroflag/Teapot:master/source';
+									loads: #('Deployment') ];
+				import: 'Teapot'.
+				
+				spec 
+					baseline: 'MongoTalk'
+					with: [ spec
+									repository: 'github://pharo-nosql/mongotalk/mc';
+									loads: #('Client')
+							];
+					import: 'MongoTalk.'.
+					
+				
+			spec
+				package: 'PolyglotricBaselineTest2'
+				with: [ spec requires: #('Teapot' 'MongoTalk') ].
+				
+						
+	 ]
 ]
 
 { #category : #accessing }
