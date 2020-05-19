@@ -8,9 +8,10 @@ Class {
 BaselineOfPolyglotricBaselineTest2 >> baseline: spec [
 	<baseline>
 	
-	spec 
+	spec
 		for: #common
-		do: [  ]
+		do: [ self setUpDependencies: spec.
+			spec package: 'PolyglotricBaselineTest2' with: [ spec requires: #('Teapot') ] ]
 ]
 
 { #category : #accessing }
