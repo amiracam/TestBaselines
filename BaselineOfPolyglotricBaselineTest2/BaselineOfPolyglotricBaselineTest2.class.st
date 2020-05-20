@@ -25,9 +25,17 @@ BaselineOfPolyglotricBaselineTest2 >> baseline: spec [
 					import: 'MongoTalk.'.
 					
 				
+				spec 
+					baseline: 'SimpleRedisClient'
+					with: [ spec
+									repository: 'github://svenvc/SimpleRedisClient'
+							];
+					import: 'SimpleRedisClient.'.
+					
+				
 			spec
 				package: 'PolyglotricBaselineTest2'
-				with: [ spec requires: #('Teapot' 'MongoTalk') ].
+				with: [ spec requires: #('Teapot' 'MongoTalk' 'SimpleRedisClient') ].
 				
 						
 	 ]
@@ -36,15 +44,4 @@ BaselineOfPolyglotricBaselineTest2 >> baseline: spec [
 { #category : #accessing }
 BaselineOfPolyglotricBaselineTest2 >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : #baselines }
-BaselineOfPolyglotricBaselineTest2 >> setUpDependencies: spec [
-
-	spec
-		baseline: 'Teapot'
-			with: [ spec
-				repository: 'github://zeroflag/Teapot:master/source';
-				loads: #('Deployment') ];
-		import: 'Teapot'.
 ]
